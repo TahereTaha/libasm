@@ -1,0 +1,8 @@
+**/*.swp
+**/*test*.run
+**/*.o
+**/*.d
+
+todo_list.md
+
+
