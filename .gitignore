@@ -3,6 +3,11 @@
 **/*.o
 **/*.d
 
+libasm.a
+a.out
+test
+
+
 todo_list.md
 
 
