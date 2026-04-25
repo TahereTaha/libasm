@@ -38,7 +38,11 @@ FUNC		:=	ft_strlen			\
 
 OBJ			:=	$(addprefix $(BIN_DIR), $(addsuffix .o, $(FUNC)))
 
-TEST	 	:=	$(addprefix $(TEST_DIR), $(addsuffix .test.run, $(OBJ)))
+TEST_SRC	:=	$(shell find test -name "*.c")
+
+TEST	 	:=	$(patsubst %.c,%.run,$(TEST_SRC))
+
+TEST_DEP	 :=	$(patsubst %.c,%.d,$(TEST_SRC))
 
 DEP		:=	$(OBJ:.o=.d)
 
@@ -63,11 +67,30 @@ $(BIN_DIR)%.o : %.s	Makefile
 	$(AS) $(ASFLAGS) $< -o $@
 
 test: build_test
-	echo testing all the functions.
+	@echo '//'
+	@echo '//  'testing all the functions.
+	@echo '//'
+	@for test in $(TEST) ; do \
+		$$test ; \
+		if [ $$? -eq 0 ] ; then \
+			echo "\033[32mSuccess\033[0m" at $$test ; \
+		else  \
+			echo "\033[31mFailed\033[0m" at $$test ; \
+		fi ; \
+	done 
+		
 
-build_test: $(TEST_DIR) $(TEST)
+build_test: $(TEST)
 
-$(TEST_DIR)%.test.run: $(SRC_DIR)%.test.cpp
+$(TEST_DIR)%.test.run: $(TEST_DIR)%.test.cpp Makefile
+	$(CXX) $(CXXFLAGS) $< $(NAME) -o $@
+
+$(TEST_DIR)%.test.run: $(TEST_DIR)%.test.c Makefile
+	$(CC) $(CCFLAGS) $< $(NAME) -o $@
+
+$(TEST_DIR)%.test.run: $(TEST_DIR)%.test.s Makefile
+	echo "to be implemented."
+#	$(AS) $(ASFLAGS) $< $(NAME)
 
 
 clean :
@@ -79,5 +102,6 @@ fclean : clean
 re : fclean all
 
 -include $(DEP)
+-include $(TEST_DEP)
 
 .PHONY:	all clean test fclean re

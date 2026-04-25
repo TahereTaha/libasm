@@ -1,0 +1,17 @@
+
+#include "libasm.h"
+#include <stdio.h>
+#include <string.h>
+
+//	testing with a sort string.
+
+#define TEST_STR "hello world"
+
+int	main(void)
+{
+	if (ft_strlen(TEST_STR) != strlen(TEST_STR))
+		return (1);
+	return (0);
+}
+
+
