@@ -3,9 +3,9 @@
 #include <stdio.h>
 #include <string.h>
 
-//	simple hello world test.
+//	copy empty string.
 
-#define SRCS_STR "hello world!!!"
+#define SRCS_STR ""
 #define DEST_STR "goodbye nothingness..."
 
 int	main(void)
@@ -20,7 +20,6 @@ int	main(void)
 		return (1);
 	if (strcmp(srcs, dest))
 		return (1);
-//	printf("dest is: %s\n", dest);
 	if (strcmp(dest, SRCS_STR))
 		return (1);
 	return (0);
