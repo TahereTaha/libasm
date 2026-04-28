@@ -82,13 +82,13 @@ test: build_test
 
 build_test: $(TEST)
 
-$(TEST_DIR)%.test.run: $(TEST_DIR)%.test.cpp Makefile
+$(TEST_DIR)%.test.run: $(TEST_DIR)%.test.cpp $(NAME) Makefile
 	$(CXX) $(CXXFLAGS) $< $(NAME) -o $@
 
-$(TEST_DIR)%.test.run: $(TEST_DIR)%.test.c Makefile
+$(TEST_DIR)%.test.run: $(TEST_DIR)%.test.c $(NAME) Makefile
 	$(CC) $(CCFLAGS) $< $(NAME) -o $@
 
-$(TEST_DIR)%.test.run: $(TEST_DIR)%.test.s Makefile
+$(TEST_DIR)%.test.run: $(TEST_DIR)%.test.s $(NAME) Makefile
 	echo "to be implemented."
 #	$(AS) $(ASFLAGS) $< $(NAME)
 

@@ -6,8 +6,8 @@ ft_strcpy:
 	xor eax, eax
 	xor ecx, ecx
 	strcpy_loop:
-	mov al, [rdi + rcx]
-	mov [rsi + rcx], al
+	mov al, [rsi + rcx]
+	mov [rdi + rcx], al
 	cmp al, 0
 	je strcpy_loop_end
 	inc rcx
