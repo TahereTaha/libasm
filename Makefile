@@ -30,11 +30,11 @@ NAME	=	libasm.a
 
 
 FUNC		:=	ft_strlen			\
-#				ft_strcpy.o			\
-#				ft_strcmp.o			\
-#				ft_write.o			\
-#				ft_read.o			\
-#				ft_strdup.o			\
+				ft_strcpy			\
+#				ft_strcmp			\
+#				ft_write			\
+#				ft_read				\
+#				ft_strdup			\
 
 OBJ			:=	$(addprefix $(BIN_DIR), $(addsuffix .o, $(FUNC)))
 
