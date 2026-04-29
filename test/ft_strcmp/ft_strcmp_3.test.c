@@ -5,8 +5,8 @@
 
 //	simple hello world test diferent.
 
-#define	STR1 "hello world!!!"
-#define	STR2 "goodbye nothingness..."
+#define	STR1 "zello world!!!"
+#define	STR2 "aoodbye nothingness..."
 
 int	main(void)
 {
