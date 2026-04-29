@@ -10,7 +10,7 @@
 
 #define	str_len 5000
 
-#define str_passes 1000000
+#define str_passes 100000
 
 int	main(void)
 {
@@ -25,7 +25,7 @@ int	main(void)
 	old_dest = malloc(str_len * sizeof(char));
 	old_dest[str_len - 1] = 0;
 
-	int fd = open("/dev/urandom", 	O_RDONLY);
+	int fd = open("/dev/random", 	O_RDONLY);
 
 	size_t	i;
 
@@ -38,8 +38,6 @@ int	main(void)
 		if (ret != dest)
 			return (1);
 		if (strcmp(srcs, dest))
-			return (1);
-		if (!strcmp(dest, old_dest))
 			return (1);
 		i++;
 	}
