@@ -3,10 +3,10 @@
 #include <stdio.h>
 #include <string.h>
 
-//	simple hello world test diferent.
+//	simple hello world test equal.
 
 #define	STR1 "hello world!!!"
-#define	STR2 "goodbye nothingness..."
+#define	STR2 "hello world!!!"
 
 int	main(void)
 {
