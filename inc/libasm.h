@@ -13,6 +13,7 @@
 
 size_t	ft_strlen(const char *str);
 char	*ft_strcpy(char *dest, char *srcs);
+int		ft_strcmp(char *str1, char *str2);
 
 
 
