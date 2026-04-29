@@ -3,10 +3,10 @@
 #include <stdio.h>
 #include <string.h>
 
-//	test with special characters.
+//	simple hello world test diferent.
 
-#define	STR1 "𐑖𐑱𐑝𐑾𐑯"
-#define	STR2 "𐑖𐑱𐑝𐑾𐑯"
+#define	STR1 "hello world!!!"
+#define	STR2 "goodbye nothingness..."
 
 int	main(void)
 {
