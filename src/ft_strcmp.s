@@ -17,7 +17,7 @@ ft_strcmp:
 	strcmp_loop_end:
 	movsx esi, al
 	movsx edi, ah
-	mov eax, esi
-	sub eax, edi
+	mov eax, edi
+	sub eax, esi
 	ret
 
