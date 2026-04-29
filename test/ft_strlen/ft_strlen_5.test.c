@@ -12,9 +12,9 @@
 #define medium_str_len 200
 #define large_str_len 100000
 
-#define short_str_passes 100000
-#define medium_str_passes 10000
-#define large_str_passes 500
+#define short_str_passes 1000000
+#define medium_str_passes 100000
+#define large_str_passes 5000
 
 int	main(void)
 {

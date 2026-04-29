@@ -10,7 +10,7 @@
 
 #define	str_len 5000
 
-#define str_passes 10000
+#define str_passes 1000000
 
 int	main(void)
 {

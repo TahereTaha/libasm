@@ -31,7 +31,7 @@ NAME	=	libasm.a
 
 FUNC		:=	ft_strlen			\
 				ft_strcpy			\
-#				ft_strcmp			\
+				ft_strcmp			\
 #				ft_write			\
 #				ft_read				\
 #				ft_strdup			\
@@ -70,15 +70,9 @@ test: build_test
 	@echo '//'
 	@echo '//  'testing all the functions.
 	@echo '//'
-	@for test in $(TEST) ; do \
-		$$test ; \
-		if [ $$? -eq 0 ] ; then \
-			echo "\033[32mSuccess\033[0m" at $$test ; \
-		else  \
-			echo "\033[31mFailed\033[0m" at $$test ; \
-		fi ; \
-	done 
-		
+	@./run_tests.sh
+
+
 
 build_test: $(TEST)
 
