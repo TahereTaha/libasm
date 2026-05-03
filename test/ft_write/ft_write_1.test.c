@@ -18,7 +18,7 @@ int	main(void)
    	int	p_ret = pipe(my_pipe);
 	(void)p_ret;
 
-	ssize_t	w_ret = write(my_pipe[1], srcs, strlen(srcs));
+	ssize_t	w_ret = ft_write(my_pipe[1], srcs, strlen(srcs) + 1);
 	int		w_errno = errno;
 	(void)w_ret;
 	(void)w_errno;
@@ -29,6 +29,10 @@ int	main(void)
 	(void)r_errno;
 
 	if (strcmp(srcs, dest))
+		return (1);
+	if (w_ret != r_ret)
+		return (1);
+	if (w_errno != r_errno)
 		return (1);
 	return (0);
 }
