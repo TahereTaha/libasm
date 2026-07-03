@@ -8,10 +8,10 @@ ft_read:
 	syscall
 	cmp rax, 0
 	jge return
-	mov rbx, rax
+	mov rdx, rax
 	call __errno_location wrt ..plt
-	neg rbx
-	mov [rax], rbx
+	neg rdx
+	mov [rax], rdx
 	mov rax, -1
 return:
 	ret

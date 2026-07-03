@@ -1,0 +1,31 @@
+
+#include "libasm.h"
+#include <stdio.h>
+#include <string.h>
+#include <errno.h>
+
+//	simple hello world test.
+
+#define	STR "hello world!!!"
+#define	STR_LEN strlen(STR)
+
+int	main(void)
+{
+	char	*srcs = STR;
+	char	*dest = NULL;
+	
+	dest = ft_strdup(srcs);
+	if (!dest && errno != ENOMEM)
+		return (1);
+	if (!dest)
+		return (0);
+	
+	if (strcmp(srcs, dest))
+		return (1);
+	if (srcs == dest)
+		return (1);
+	if ((dest > srcs && (unsigned long)(dest - srcs) < STR_LEN) || (srcs > dest && (unsigned long)(srcs - dest) < STR_LEN))
+		return (1);
+	return (0);
+}
+

@@ -38,7 +38,7 @@ FUNC		:=	ft_strlen			\
 				ft_strcmp			\
 				ft_write			\
 				ft_read				\
-#				ft_strdup			\
+				ft_strdup			\
 
 OBJ		:=	$(addprefix $(BIN_DIR), $(addsuffix .o, $(FUNC)))
 
