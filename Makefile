@@ -3,6 +3,7 @@ ROOT_DIR	=	./
 BIN_DIR		=	$(ROOT_DIR)bin/
 SRC_DIR		=	$(ROOT_DIR)src/
 TEST_DIR	=	$(ROOT_DIR)test/
+TEST_BIN_DIR	=	$(TEST_DIR)bin/
 INC_DIR		=	$(ROOT_DIR)inc/
 
 RM		=	rm
@@ -10,12 +11,15 @@ AR		=	ar
 AS		=	nasm
 CC		=	cc
 CXX		=	c++
+LD		=	ld
+
 
 RMFLAGS		:=	-rf
 ARFLAGS		:=	rcs
 ASFLAGS		:=	-felf64
 CCFLAGS		:=	-Wall -Wextra -Werror -MMD
 CXXFLAGS	:=	-Wall -Wextra -Werror -MMD
+LDFLAGS		:=	
 
 CINC		:=	-I$(BIN_DIR)
 CINC		+=	-I$(INC_DIR)
@@ -36,23 +40,31 @@ FUNC		:=	ft_strlen			\
 #				ft_read				\
 #				ft_strdup			\
 
-OBJ			:=	$(addprefix $(BIN_DIR), $(addsuffix .o, $(FUNC)))
+OBJ		:=	$(addprefix $(BIN_DIR), $(addsuffix .o, $(FUNC)))
 
 TEST_SRC	:=	$(shell find test -name "*.c")
 
-TEST	 	:=	$(patsubst %.c,%.run,$(TEST_SRC))
+TEST	 	:=	$(patsubst %.c,$(TEST_BIN_DIR)%.run,$(notdir $(TEST_SRC)))
 
-TEST_DEP	 :=	$(patsubst %.c,%.d,$(TEST_SRC))
+TEST_DEP	:=	$(patsubst %.c,$(BIN_DIR)%.d,$(notdir $(TEST_SRC)))
 
 DEP		:=	$(OBJ:.o=.d)
 
 VPATH	= $(ROOT_DIR)
 VPATH	+= $(SRC_DIR)
+VPATH	+= $(addprefix $(TEST_DIR), $(FUNC))
 
-all	:	$(BIN_DIR) $(NAME)
+all	:	$(BIN_DIR) $(TEST_BIN_DIR) $(NAME)
+	@echo '//'
+	@echo $(TEST_BIN_DIR)
+	@echo '//'
+	@echo $(VPATH)
 
 $(BIN_DIR)	:
 	mkdir $(BIN_DIR)
+
+$(TEST_BIN_DIR)	:
+	mkdir $(TEST_BIN_DIR)
 
 $(NAME) : $(OBJ) Makefile
 	$(AR) $(ARFLAGS) $(NAME) $(OBJ)
@@ -68,6 +80,12 @@ $(BIN_DIR)%.o : %.s	Makefile
 
 test: build_test
 	@echo '//'
+	@echo $(TEST_BIN_DIR)
+	@echo '//'
+	@echo $(notdir $(TEST))
+	@echo '//'
+	@echo $(TEST_SRC)
+	@echo '//'
 	@echo '//  'testing all the functions.
 	@echo '//'
 	@./run_tests.sh
@@ -76,15 +94,9 @@ test: build_test
 
 build_test: $(TEST)
 
-$(TEST_DIR)%.test.run: $(TEST_DIR)%.test.cpp $(NAME) Makefile
-	$(CXX) $(CXXFLAGS) $< $(NAME) -o $@
-
-$(TEST_DIR)%.test.run: $(TEST_DIR)%.test.c $(NAME) Makefile
+$(TEST_BIN_DIR)%.run: $(BIN_DIR)%.o $(NAME) Makefile
 	$(CC) $(CCFLAGS) $< $(NAME) -o $@
 
-$(TEST_DIR)%.test.run: $(TEST_DIR)%.test.s $(NAME) Makefile
-	echo "to be implemented."
-#	$(AS) $(ASFLAGS) $< $(NAME)
 
 
 clean :
