@@ -55,10 +55,6 @@ VPATH	+= $(SRC_DIR)
 VPATH	+= $(addprefix $(TEST_DIR), $(FUNC))
 
 all	:	$(BIN_DIR) $(TEST_BIN_DIR) $(NAME)
-	@echo '//'
-	@echo $(TEST_BIN_DIR)
-	@echo '//'
-	@echo $(VPATH)
 
 $(BIN_DIR)	:
 	mkdir $(BIN_DIR)
@@ -79,12 +75,6 @@ $(BIN_DIR)%.o : %.s	Makefile
 	$(AS) $(ASFLAGS) $< -o $@
 
 test: build_test
-	@echo '//'
-	@echo $(TEST_BIN_DIR)
-	@echo '//'
-	@echo $(notdir $(TEST))
-	@echo '//'
-	@echo $(TEST_SRC)
 	@echo '//'
 	@echo '//  'testing all the functions.
 	@echo '//'
