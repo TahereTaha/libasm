@@ -10,10 +10,12 @@
 int	main(void)
 {
 	char	my_buff[1024];
+	bzero(my_buff, 1024);
 	ssize_t	my_ret = ft_read(42, my_buff, 42);
 	int		my_errno = errno;
 
 	char	original_buff[1024];
+	bzero(original_buff, 1024);
 	ssize_t	original_ret = write(42, original_buff, 42);
 	int		original_errno = errno;
 
