@@ -74,7 +74,7 @@ $(BIN_DIR)%.o : %.c	Makefile
 $(BIN_DIR)%.o : %.s	Makefile 
 	$(AS) $(ASFLAGS) $< -o $@
 
-test: build_test all
+test: all build_test
 	@echo '//'
 	@echo '//  'testing all the functions.
 	@echo '//'
