@@ -78,7 +78,7 @@ test: all build_test
 	@echo '//'
 	@echo '//  'testing all the functions.
 	@echo '//'
-	@./run_tests.sh
+	@bash run_tests.sh
 
 
 
