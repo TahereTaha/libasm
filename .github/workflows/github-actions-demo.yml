@@ -16,6 +16,6 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y gcc nasm
+          sudo apt-get install -y gcc nasm zsh
       - name: Run unit test
         run: make test && echo "all tests pass"
