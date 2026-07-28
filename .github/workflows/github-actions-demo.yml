@@ -1,4 +1,4 @@
-name: GitHub Actions Demo
+name: CI
 run-name: ci automated tests
 on:
   pull_request:
